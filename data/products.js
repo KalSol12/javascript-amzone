@@ -656,5 +656,20 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "new-product-123",
+    image: "images/products/umbrella.jpg",
+    name: "Compact Automatic Umbrella",
+    rating: {
+      stars: 4.5,
+      count: 150
+    },
+    priceCents: 1999,
+    keywords: [
+      "umbrella",
+      "rain",
+      "accessories"
+    ]
   }
 ];

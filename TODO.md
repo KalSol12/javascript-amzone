@@ -1,4 +1,5 @@
-- [x] Add data-product-id attribute to the add-to-cart button in amazon.js
-- [x] Implement the add to cart logic in the event listener in amazon.js
-- [x] Update the cart quantity display in the header dynamically
-- [ ] Test the functionality
+# TODO: Modify Add to Cart to Use Selected Quantity
+
+- [ ] Update the event listener for '.js-product-button' to retrieve the selected quantity from the associated select element.
+- [ ] Modify the cart addition logic to add the selected quantity instead of always 1.
+- [ ] Ensure the cart quantity display updates correctly with the new total.
