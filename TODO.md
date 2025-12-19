@@ -1,0 +1,4 @@
+- [x] Add data-product-id attribute to the add-to-cart button in amazon.js
+- [x] Implement the add to cart logic in the event listener in amazon.js
+- [x] Update the cart quantity display in the header dynamically
+- [ ] Test the functionality
