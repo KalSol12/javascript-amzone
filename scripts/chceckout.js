@@ -1,13 +1,13 @@
-import { cart, removeFromCart } from "../data/cart.js";
+import { cart, removeFromCart, updateCartQuatity } from "../data/cart.js";
 import { products } from "../data/products.js";
-// import { updateCartQuatity } from "./amazon.js";
+
 import { formatCurrency } from "./utils.js";
 
 
 
 const orderSummery=document.querySelector('.js-order-summery');
 let orderSummeryHTML = '';
-updateCartQuatity();
+ document.querySelector('.js-return-to-home-link').innerHTML=updateCartQuatity();
 
 cart.forEach((cartItem)=>{
     let matchingItem;
@@ -114,26 +114,11 @@ document.querySelectorAll('.js-delete-link').forEach((link)=>{
 
     let container=document.querySelector(`.js-item-container${productId}`);
     container.remove();
-    updateCartQuatity();
+    document.querySelector('.js-return-to-home-link').innerHTML=updateCartQuatity();
   })
 
 
 });
 
-  function  updateCartQuatity() {
   
-    let cartQuantity = 0;
-    cart.forEach((item)=>{
-      cartQuantity += item.quantity;
-    });
   
-
-  // return cartQuantity;
-   document.querySelector('.js-return-to-home-link').innerHTML=cartQuantity;
-
-  
- }
-
-
-
-
