@@ -16,7 +16,7 @@
 
 
 ];}
-function  addToStorage() {
+export function  addToStorage() {
   localStorage.setItem('cart',JSON.stringify(cart));
 
   
@@ -46,6 +46,16 @@ function  addToStorage() {
   
 }
 
+export function updateQuantity(productId, newQuantity) {
+  cart.forEach((item) => {
+    if (item.productId === productId) {
+      item.quantity = newQuantity;
+    }
+  });
+
+  addToStorage();
+  console.log(productId,newQuantity);
+}
 export function  removeFromCart(productId) {
    let newCart=[];
    cart.forEach((cartItem)=>{
