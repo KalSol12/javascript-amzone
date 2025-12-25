@@ -1,4 +1,4 @@
-import { cart, removeFromCart, updateCartQuatity, updateQuantity } from "../data/cart.js";
+import { cart, removeFromCart, updateCartQuatity, updateQuantity, updateDeliveryoption } from "../data/cart.js";
 import { products } from "../data/products.js";
 
 import { formatCurrency } from "./utils.js";
@@ -115,15 +115,21 @@ function deliveryOptionFun(matchingItem,cartItem) {
 
     const datString= deliveryDay.format('dddd MMMM D');
 
-    const priceString=datString===0 ? 'FREE' :`${formatCurrency(deliveryOption.priceCent)}`+'-'
-html+=`      <div class="delivery-option">
+    const priceString=deliveryOption.priceCent === 0 ? 'FREE' :`${formatCurrency(deliveryOption.priceCent)}`+' -'
+html+=`      <div class="delivery-option js-delivery-option"
+              data-product-id='${matchingItem.id}'
+              data-option-id='${deliveryOption.id}'
+
+                        
+>
                   <input type="radio"
                     class="delivery-option-input"
+                    value="${deliveryOption.id}"
                     ${isCheked ? 'checked':''}
                     name="delivery-option-${matchingItem.id}">
                   <div>
                     <div class="delivery-option-date">
-                     ${deliveryDay}
+                     ${datString}
                     </div>
                     <div class="delivery-option-price">
                      ${priceString} Shipping
@@ -166,6 +172,7 @@ document.querySelectorAll('.js-update-quantity-link').forEach((link)=>{
     const quantityLabel = cartItemContainer.querySelector('.quantity-label');
     const input = cartItemContainer.querySelector('.js-quantity-input');
     input.value = quantityLabel.innerHTML;
+
   })
 
 
@@ -211,9 +218,28 @@ document.querySelectorAll('.js-quantity-input').forEach((input) => {
   });
 });
 
-  
 
+document.querySelectorAll('.js-delivery-option').forEach((element)=>{
+  element.addEventListener('click',()=>{
+    const {productId, optionId} = element.dataset;
+    updateDeliveryoption(productId, optionId);
 
+    // Update the delivery date in the UI
+    const cartItemContainer = element.closest('.cart-item-container');
+    const deliveryDateElement = cartItemContainer.querySelector('.delivery-date');
 
-  
+    let deliveryOption;
+    deliveryOptions.forEach((option)=>{
+      if (option.id === optionId) {
+        deliveryOption = option;
+      }
+    });
+
+    const today = dayjs();
+    const deliveryDay = today.add(deliveryOption.deliveryDay, 'day');
+    const dateString = deliveryDay.format('dddd MMMM D');
+    deliveryDateElement.innerHTML = `Delivery date: ${dateString}`;
+  })
+})
+
   

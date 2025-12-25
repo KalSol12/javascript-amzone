@@ -1,3 +1,4 @@
 - [x] Add data-product-id attribute to cart-item-container in scripts/chceckout.js
 - [x] Update CSS to hide quantity-label during editing in styles/pages/checkout/checkout.css
 - [x] Modify JS to update quantity label and cart total after saving in scripts/chceckout.js
+- [x] Implement update delivery option function in scripts/chceckout.js
