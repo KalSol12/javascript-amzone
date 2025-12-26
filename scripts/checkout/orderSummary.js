@@ -5,6 +5,7 @@ import { formatCurrency } from "../utils.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 // import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js"; console.log(dayjs().format());
 import { deliveryOptions,getDeliveryOption} from "../../data/deliveryOption.js";
+import { rederpaymentSummary } from "./paymentSummary.js";
 
 
 
@@ -149,6 +150,7 @@ document.querySelectorAll('.js-delete-link').forEach((link)=>{
     let container=document.querySelector(`.js-item-container${productId}`);
     container.remove();
     document.querySelector('.js-return-to-home-link').innerHTML=updateCartQuatity();
+    rederpaymentSummary();  
   })
 
 
@@ -217,6 +219,7 @@ document.querySelectorAll('.js-delivery-option').forEach((element)=>{
     const {productId, optionId} = element.dataset;
     updateDeliveryoption(productId, optionId);
     renderOrderSummery();
+    rederpaymentSummary();
 
     // Update the delivery date in the UI
     // const cartItemContainer = element.closest('.cart-item-container');
