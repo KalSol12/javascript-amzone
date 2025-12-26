@@ -2,6 +2,7 @@ import { cart } from '../../data/cart.js'
 import { getProduct } from '../../data/products.js';
 import {  getDeliveryOption} from "../../data/deliveryOption.js";
 import { formatCurrency } from '../utils.js';
+import {updateCartQuatity} from '../../data/cart.js'
 //  import { getProduct } from "../data/products.js";
 
 
@@ -31,7 +32,7 @@ export function rederpaymentSummary() {
           </div>
 
           <div class="payment-summary-row">
-            <div>Items (3):</div>
+            <div>Items (${updateCartQuatity()}):</div>
             <div class="payment-summary-money">${formatCurrency(productCentPrice)}</div>
           </div>
 
@@ -52,7 +53,7 @@ export function rederpaymentSummary() {
 
           <div class="payment-summary-row total-row">
             <div>Order total:</div>
-            <div class="payment-summary-money">${totalCent}</div>
+            <div class="payment-summary-money">${formatCurrency(totalCent)}}</div>
           </div>
 
           <button class="place-order-button button-primary">

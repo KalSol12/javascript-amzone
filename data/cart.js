@@ -1,3 +1,4 @@
+ 
  export let cart= JSON.parse(localStorage.getItem('cart'));
  if (!cart) {
  cart=
@@ -48,9 +49,12 @@ export function updateQuantity(productId, newQuantity) {
       item.quantity = newQuantity;
     }
   });
+  
 
   addToStorage();
   console.log(productId,newQuantity);
+
+
 }
 export function  removeFromCart(productId) {
    let newCart=[];
@@ -92,7 +96,7 @@ export function updateDeliveryoption(productId,deliveryOptionId) {
       if (productId === item.productId) {
         matchingItem = item;
       }
-      
+
     });
 
 
