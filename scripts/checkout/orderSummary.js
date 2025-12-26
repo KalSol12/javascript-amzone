@@ -1,10 +1,10 @@
 import { cart, removeFromCart, updateCartQuatity, updateQuantity, updateDeliveryoption } from "../../data/cart.js";
-import { products } from "../../data/products.js";
+import { getProduct, products } from "../../data/products.js";
 
 import { formatCurrency } from "../utils.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 // import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js"; console.log(dayjs().format());
-import { deliveryOptions} from "../../data/deliveryOption.js";
+import { deliveryOptions,getDeliveryOption} from "../../data/deliveryOption.js";
 
 
 
@@ -21,24 +21,18 @@ let orderSummeryHTML = '';
       }
 
       const cartItem = cart[index];
-      let matchingItem;
+     
       const productId = cartItem.productId;
+       const matchingItem=getProduct(productId);
+
 
       // Find matching product (keeping simple for now, could be recursive)
-      products.forEach((productItem)=>{
-        if(productId == productItem.id){
-          matchingItem = productItem;
-        }
-      });
+    
 
       const deliveryOptionId = cartItem.deliveryOptionId;
-      let deliveryOption;
+      let deliveryOption=getDeliveryOption(deliveryOptionId);
 
-      deliveryOptions.forEach((option)=>{
-        if (option.id === cartItem.deliveryOptionId) {
-          deliveryOption = option;
-        }
-      });
+      
 
       let today = dayjs();
       const deliveryDay = today.add(deliveryOption.deliveryDay, 'day');
